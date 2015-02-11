@@ -14,6 +14,10 @@ object ScalazBuild extends Build {
     )
   )
 
+  // TODO Move to an other file
+  val paradiseVersion = "2.1.0-M5"
+  val paradisePlugin = compilerPlugin("org.scalamacros" %  "paradise" % paradiseVersion cross CrossVersion.full)
+
   lazy val root = Project(
     id = "root",
     base = file(".")
@@ -30,7 +34,8 @@ object ScalazBuild extends Build {
     libraryDependencies ++= Seq(
       "org.scala-lang"  %  "scala-reflect"  % scalaVersion.value,
       "org.scala-lang"  %  "scala-compiler" % scalaVersion.value % "provided"
-    )
+    ),
+    addCompilerPlugin(paradisePlugin)
   )
 
   lazy val examples = scalazPrj("examples").dependsOn(core, rts, meta)
