@@ -20,9 +20,10 @@ object Demo extends App {
   case class Cons[A](head: A, tail: Option[Cons[A]])
   object Cons {
     import scala.reflect.runtime.universe._
-    //implicit def show[A: Show: TypeTag]: Show[Cons[A]] = Deriving.mkShow[Cons[A]]
+    implicit def show[A: Show]: Show[Cons[A]] = Deriving.mkShow[Cons[A]]
 
-    implicit def show[A: Show: TypeTag]: Show[Cons[A]] = {
+    /*
+    implicit def show[A: Show]: Show[Cons[A]] = {
       val derivable = Derivable.show
       derivable.instance[Cons[A]] { b =>
         derivable.reduce[Cons[A]](List(
@@ -30,6 +31,7 @@ object Demo extends App {
         ))
       }
     }
+    */
   }
 
   def mainIO: IO[Unit] =

@@ -68,30 +68,27 @@ object Deriving {
     c.Expr[TC[T]](Block(
       List(q"val derivable = $derivable"),
       Apply(
-        Apply(
-          TypeApply(
-            Select(Ident(TermName("derivable")), TermName("instance")),
-            List(TypeTree(weakTypeOf[T]))
-          ),
-          List(
-            Function(
-              List(ValDef(Modifiers(PARAM), TermName("b"), TypeTree(), EmptyTree)),
-              Apply(
-                TypeApply(
-                  Select(Ident(TermName("derivable")), TermName("reduce")),
-                  List(TypeTree(weakTypeOf[T]))
-                ),
-                List(
-                  Apply(
-                    Select(Ident(TermName("List")), TermName("apply")),
-                    injects
-                  )
+        TypeApply(
+          Select(Ident(TermName("derivable")), TermName("instance")),
+          List(TypeTree(weakTypeOf[T]))
+        ),
+        List(
+          Function(
+            List(ValDef(Modifiers(PARAM), TermName("b"), TypeTree(), EmptyTree)),
+            Apply(
+              TypeApply(
+                Select(Ident(TermName("derivable")), TermName("reduce")),
+                List(TypeTree(weakTypeOf[T]))
+              ),
+              List(
+                Apply(
+                  Select(Ident(TermName("List")), TermName("apply")),
+                  injects
                 )
               )
             )
           )
-        ),
-        List(q"implicitly")
+        )
       )
     ))
   }
