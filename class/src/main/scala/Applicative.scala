@@ -6,3 +6,11 @@ abstract class Applicative[F[_]] {
 
   implicit def functor: Functor[F] = apply.functor
 }
+
+object Applicative {
+  trait Syntax {
+    implicit class AnyToApplicativeOps[A](a: A) {
+      def pure[F[_]](implicit F: Applicative[F]): F[A] = F.pure(a)
+    }
+  }
+}

@@ -11,6 +11,7 @@ trait Prelude {
   def implicitly[A](implicit a: A): A = a
 
   type Function[A, B] = scala.Predef.Function[A, B]
+  type Lazy[A] = Unit => A
 }
 
 object Prelude extends Prelude
