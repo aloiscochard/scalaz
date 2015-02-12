@@ -20,7 +20,7 @@ object z {
           val tree = v.tpt
           val AppliedTypeTree(ident, _) = tree
           val tpe = c.typecheck(ident, c.TYPEmode).tpe
-          tpe.decls.collect { case m: MethodSymbol if m.isImplicit =>
+          tpe.decls.collect { case m: MethodSymbol if m.isImplicit && m.paramLists.isEmpty =>
             val n = s"${v.name}_${m.name}"
             val i = Select(Ident(v.name), m.name)
             DefDef(Modifiers(IMPLICIT), TermName(n), List(), List(), TypeTree(), i)
