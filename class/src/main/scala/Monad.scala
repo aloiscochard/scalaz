@@ -1,9 +1,9 @@
 package scalaz
 
-abstract class Monad[F[_]] {
-  implicit def bind: Bind[F]
-  implicit def applicative: Applicative[F]
+abstract class Monad[M[_]] {
+  implicit def bind: Bind[M]
+  implicit def applicative: Applicative[M]
 
-  implicit def apply: Apply[F] = applicative.apply
-  implicit def functor: Functor[F] = applicative.apply.functor
+  implicit def apply: Apply[M] = applicative.apply
+  implicit def functor: Functor[M] = applicative.apply.functor
 }

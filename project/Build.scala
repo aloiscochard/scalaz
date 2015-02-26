@@ -21,7 +21,7 @@ object ScalazBuild extends Build {
   lazy val root = Project(
     id = "root",
     base = file(".")
-  ).aggregate(prelude, core, clazz, io, rts, meta, examples)
+  ).aggregate(prelude, core, clazz, io, rts, machines, meta, examples)
 
   lazy val prelude = scalazPrj("prelude")
   lazy val core = scalazPrj("core").dependsOn(prelude, clazz)
@@ -29,6 +29,8 @@ object ScalazBuild extends Build {
 
   lazy val io = scalazPrj("io")
   lazy val rts = scalazPrj("rts").dependsOn(core, io, core % "test->test")
+
+  lazy val machines = scalazPrj("machines").dependsOn(core, rts)
 
   lazy val meta = scalazPrj("meta").dependsOn(clazz, core).settings(
     libraryDependencies ++= Seq(
@@ -38,7 +40,7 @@ object ScalazBuild extends Build {
     addCompilerPlugin(paradisePlugin)
   )
 
-  lazy val examples = scalazPrj("examples").dependsOn(core, rts, meta).settings(
+  lazy val examples = scalazPrj("examples").dependsOn(core, rts, meta, machines).settings(
     addCompilerPlugin(paradisePlugin)
   )
 }
