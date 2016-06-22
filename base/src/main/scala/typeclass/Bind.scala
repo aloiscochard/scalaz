@@ -6,8 +6,8 @@ trait Bind[M[_]] {
   def flatMap[A, B](ma: M[A])(f: A => M[B]): M[B]
 }
 
-object Bind extends BindInstances with BindFunctions {
+object Bind extends BindInstances with BindFunctions with BindSyntax {
   def apply[F[_]](implicit F: Bind[F]): Bind[F] = F
 
-  object syntax extends BindSyntax
+  object Class extends BindClassSyntax
 }
