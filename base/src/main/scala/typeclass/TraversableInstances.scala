@@ -2,7 +2,7 @@ package scalaz
 package typeclass
 
 import Functor._
-import Apply.syntax._
+import Apply._
 import Applicative.syntax._
 
 trait TraversableInstances {
