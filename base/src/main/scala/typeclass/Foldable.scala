@@ -11,5 +11,5 @@ trait Foldable[F[_]] {
 object Foldable extends FoldableInstances {
   def apply[F[_]](implicit F: Foldable[F]): Foldable[F] = F
 
-  type Syntax = FoldableSyntax
+  trait Syntax extends FoldableSyntax
 }

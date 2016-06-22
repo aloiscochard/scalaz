@@ -10,4 +10,5 @@ object Apply extends ApplySyntax {
   def apply[F[_]](implicit F: Apply[F]): Apply[F] = F
 
   object Class extends ApplyClassSyntax
+  trait Syntax extends ApplySyntax with Functor.Syntax
 }

@@ -7,4 +7,6 @@ trait Functor[F[_]] {
 
 object Functor extends FunctorFunctions with FunctorSyntax {
   def apply[F[_]](implicit F: Functor[F]): Functor[F] = F
+
+  trait Syntax extends FunctorSyntax
 }

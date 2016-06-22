@@ -10,4 +10,5 @@ object Bind extends BindInstances with BindFunctions with BindSyntax {
   def apply[F[_]](implicit F: Bind[F]): Bind[F] = F
 
   object Class extends BindClassSyntax
+  trait Syntax extends BindSyntax with Apply.Syntax
 }
