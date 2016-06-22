@@ -6,8 +6,8 @@ trait Applicative[F[_]] {
   def pure[A](a: A): F[A]
 }
 
-object Applicative {
+object Applicative extends ApplicativeSyntax {
   def apply[F[_]](implicit F: Applicative[F]): Applicative[F] = F
 
-  object syntax extends ApplicativeSyntax
+  object Class extends ApplicativeClassSyntax
 }
