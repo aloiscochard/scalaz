@@ -2,7 +2,9 @@ package scalaz
 package data
 
 import typeclass._
-import Applicative.Class._
+import Functor._
+import Apply._
+import Applicative._
 
 import Maybe.{just, empty}
 
