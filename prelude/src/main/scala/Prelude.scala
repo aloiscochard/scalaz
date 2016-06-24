@@ -5,10 +5,10 @@ import data._
 
 import scala.language.implicitConversions
 
-trait Prelude  extends data.DisjunctionFunctions
+trait Prelude  extends data.DisjunctionFunctions with data.DisjunctionSyntax
                   with data.MaybeFunctions
                   with typeclass.BindFunctions
-                  with typeclass.FunctorFunctions
+                  with typeclass.FunctorFunctions with typeclass.FunctorSyntax
                   with typeclass.TraversableFunctions {
   // Core Class
   // ==========
@@ -44,8 +44,8 @@ trait Prelude  extends data.DisjunctionFunctions
     new FoldableSyntax.Ops(fa)
 
   // FunctorSyntax
-  implicit def PfunctorOps[F[_], A](fa: F[A])(implicit F: Functor[F]): FunctorSyntax.Ops[F, A] =
-    new FunctorSyntax.Ops(fa)
+  // implicit def PfunctorOps[F[_], A](fa: F[A])(implicit F: Functor[F]): FunctorSyntax.Ops[F, A] =
+  //   new FunctorSyntax.Ops(fa)
 
   // MaybeSyntax
   implicit class POptionAsMaybe[A](oa: Option[A]) { def asMaybe: Maybe[A] = Maybe.fromOption(oa) }
