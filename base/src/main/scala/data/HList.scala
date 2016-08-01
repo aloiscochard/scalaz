@@ -1,5 +1,5 @@
 package scalaz
-package meta
+package data
 
 sealed trait HList
 

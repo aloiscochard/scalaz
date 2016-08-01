@@ -41,10 +41,12 @@ trait LensModel {
                       o.o.o.o.o.o.o.o.o.copy(o =
                         o.o.o.o.o.o.o.o.o.o.copy(i = i)))))))))))
 
-  import meta.HList._
+  import data.HList._
 
-  val _0iScope = data.Optic.Scope.run(
+  /*
+  val _0iTele = data.Telephoto.runOptics(
     HCons(_01, HCons(_12, HCons(_23, HCons(_34, HCons(_45,
       HCons(_56, HCons(_67, HCons(_78, HCons(_89, HCons(_i, HNil))))))))))
   )
+  */
 }
