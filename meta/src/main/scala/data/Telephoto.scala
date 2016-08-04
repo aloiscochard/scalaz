@@ -21,7 +21,6 @@ object Telephoto {
   }
 
   object Focal {
-
     class Aux[OL <: HList, O]
 
     object Aux {
