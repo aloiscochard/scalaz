@@ -34,7 +34,7 @@ object Optics extends LensModel {
                         o.o.o.o.o.o.o.o.o.copy(o =
                           o.o.o.o.o.o.o.o.o.o.copy(i = i)))))))))))
 
-    val _telephoto = Telephoto.compose(_01, _12, _23, _34, _45, _56, _67, _78, _89, _i)
+    val _telephoto = Optic.telephotoA(_01, _12, _23, _34, _45, _56, _67, _78, _89, _i)
 
     val _telephotoHList = {
       import data.HList._
