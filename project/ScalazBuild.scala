@@ -6,17 +6,18 @@ import pl.project13.scala.sbt.JmhPlugin
 object Scalaz extends Build {
   val testDeps = Seq("org.scalacheck" %% "scalacheck" % "1.13.0" % "test")
 
+  val scala = "2.12.0-RC1"
+
   def module(prjName: String) = Project(
     id = prjName,
     base = file(prjName)).settings(
     name := s"scalaz-$prjName",
-    scalaVersion := "2.11.8",
+    scalaVersion := scala,
     scalacOptions ++= Seq("-feature","-deprecation", "-Xlint", "-language:higherKinds",
                           "-Ybackend:GenBCode", "-Ydelambdafy:method", "-target:jvm-1.8"),
     libraryDependencies ++= testDeps ++ Seq(
       "org.scala-lang.modules" %% "scala-java8-compat" % "0.7.0",
-      compilerPlugin("org.spire-math" %% "kind-projector" % "0.7.1"),
-      compilerPlugin("com.milessabin" % "si2712fix-plugin" % "1.1.0" cross CrossVersion.full)
+      compilerPlugin("org.spire-math" %% "kind-projector" % "0.7.1")
     )
   )
 
@@ -24,7 +25,7 @@ object Scalaz extends Build {
     id = "root",
     base = file(".")
   ).settings(
-    scalaVersion := "2.11.8"
+    scalaVersion := scala
   ).aggregate ( baze
               , meta
               , benchmarks )
